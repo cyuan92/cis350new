@@ -31,13 +31,15 @@ module TherapistDashboardHelper
 		# retrieve the filenames of all recordings		
 		bucket.objects.each do |obj|	
 
-			if obj.key.match(therapist_name+"\/"+patient_name+"\/"+"[a-z A-Z 0-9 _ -]+.3gp") 			
+			if obj.key.match(therapist_name+"\/"+patient_name+"\/~"+"[a-z A-Z 0-9 _ -]+.3gp") 			
 				result << "\n<li><a href=\""
 				result << obj.url_for(:get,:expires=>10*60).to_s
-				dateRecorded = obj.key.to_s.scan(/([^_]*)/).third.first
-				timeRecorded = obj.key.to_s.scan(/([^_]*)/).fifth.first.scan(/([^.]*)/).first.first.gsub("-",":")
+				timestamp = obj.key.to_s.scan(/([^~]*)/).third.first				
+				timeRecorded = timestamp.scan(/([^_]*)/).third.first.scan(/([^.]*)/).first.first.gsub("-",":")
+				dateRecorded = timestamp.scan(/([^_]*)/).first.first
+				#
 				result << "\">"+dateRecorded + " at " + timeRecorded
-		#		result << "\">"+obj.key.to_s
+				#result << "\">"+timestamp+"<br/>"+dateRecorded+"<br/>"+timeRecorded
 				result <<"</a></li>\n"
 			end
 		end
