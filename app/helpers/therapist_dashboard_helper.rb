@@ -1,16 +1,19 @@
 module TherapistDashboardHelper	
+	#def retrieveAllPatients(email)
 	def retrieveAllPatients
 		require File.expand_path(File.dirname(__FILE__)+'/../../aws_config')
 
 		# Hard-coded bucket_name. Must be changed later to address multiple patients
 		bucket_name = "recordings77"
-		therapist_name = "conyuan"		
+		therapist_name = current_therapist.email
 		# get an instance of the S3 interface using the default configuration
 		s3=AWS::S3.new
 
 		# create a bucket
 		b = s3.buckets.create(bucket_name)
-		html="<h1>Choose your Patient</h1>\n"		
+		html="<h1>Choose your Patient </h1>\n"		
+		#html << "<p> Your email " + current_therapist.email
+		#html << "<p> Your email: "+email
 		# retrieve the filenames of all recordings
 		html <<"<ul>\n"
 		b.objects.each do |obj|			
