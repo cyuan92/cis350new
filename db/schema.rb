@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130218225127) do
+ActiveRecord::Schema.define(:version => 20130313032804) do
 
   create_table "patients", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -44,8 +44,13 @@ ActiveRecord::Schema.define(:version => 20130218225127) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "therapists", ["confirmation_token"], :name => "index_therapists_on_confirmation_token", :unique => true
   add_index "therapists", ["email"], :name => "index_therapists_on_email", :unique => true
   add_index "therapists", ["reset_password_token"], :name => "index_therapists_on_reset_password_token", :unique => true
 

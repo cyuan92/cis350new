@@ -1,0 +1,5 @@
+class TherapistMailer < ActionMailer::Base
+  def registration_confirmation(therapist)
+    mail(:to => therapist.email, :subject => "Registered with Expresso", :from => "expressoapp@gmail.com")
+  end
+end
