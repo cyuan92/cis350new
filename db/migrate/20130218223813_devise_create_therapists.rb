@@ -40,7 +40,7 @@ class DeviseCreateTherapists < ActiveRecord::Migration
     add_index :therapists, :email,                :unique => true
     add_index :therapists, :reset_password_token, :unique => true
     add_index :therapists, :confirmation_token,   :unique => true
-    add_index :therapists, :unlock_token,         :unique => true
-    add_index :therapists, :authentication_token, :unique => true
+#    add_index :therapists, :unlock_token,         :unique => true
+#    add_index :therapists, :authentication_token, :unique => true
   end
 end

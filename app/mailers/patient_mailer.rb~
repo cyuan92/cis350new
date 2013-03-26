@@ -1,0 +1,5 @@
+class PatientMailer < ActionMailer::Base
+ def registration_confirmation(patient)
+   mail(:to => patient.email, :subject => "Registered", :from => "expressoapp@gmail.com")
+ end
+end
