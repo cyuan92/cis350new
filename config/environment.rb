@@ -11,6 +11,6 @@ ActionMailer::Base.smtp_settings = {
    :port => 465,
    :domain => "gmail.com",
    :authentication => :login,
-   :user_name => "expressoapp",
+   :user_name => "expressoapp2",
    :password => "expresso1234"
  }
